@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hand.mapper.CountryMapper" >
+  <resultMap id="CountryMap" type="com.hand.dto.Country" >
+    <id column="country_id" property="countryId" jdbcType="SMALLINT" />
+    <result column="country" property="country" jdbcType="VARCHAR" />
+    <result column="last_update" property="lastUpdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+	<select id="getById" parameterType="Short" resultMap="filmMap">
+		select f.film_id,f.title,f.description,l.language_id,l.name 
+		from film f,language l where f.film_id = #{id} and l.language_id = f.language_id
+	</select>
+	
+	
+</mapper>
