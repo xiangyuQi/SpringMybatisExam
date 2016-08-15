@@ -1,6 +1,8 @@
 package com.hand.mapper;
 
+import com.hand.dto.Address;
+
 public interface AddressMapper {
 	
-	public Short getById(Short id);
+	public Address getById(Short id);
 }

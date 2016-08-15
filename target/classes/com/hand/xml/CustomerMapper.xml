@@ -11,13 +11,18 @@
     <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
   </resultMap>
 	<select id="getById" parameterType="Short" resultMap="CustomerMap">
-		select customer_id,first_name,last_name ,email,address_id,create_date from 
+		select customer_id,first_name,last_name ,email,address_id,create_date,store_id from 
 		customer where customer_id = #{id}
 	</select>
+	<select id="getByCustomer" parameterType="com.hand.dto.Customer" resultMap="CustomerMap">
+		select customer_id,first_name,last_name ,email,address_id,create_date,store_id from 
+		customer where first_name = #{firstName} and last_name = #{lastName} and email = #{email}
+		and address_id = #{addressId} and create_date = #{createDate}
 	
+	</select>
 	<insert id="add" parameterType="com.hand.dto.Customer">
-		insert into customer(first_name,last_name,email,address_id,create_date)	
-		values(#{firstName},#{lastName},#{email},#{addressId},#{createDate})
+		insert into customer(first_name,last_name,email,address_id,create_date,store_id)	
+		values(#{firstName},#{lastName},#{email},#{addressId},#{createDate},#{storeId})
 	</insert>
 	
 	<delete id="deleteById" parameterType="Short">

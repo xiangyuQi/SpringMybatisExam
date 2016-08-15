@@ -9,4 +9,6 @@ public interface CustomerMapper {
 	public void deleteById(Short id);
 	
 	public Customer getById(Short id);
+
+	public Customer getByCustomer(Customer customer);
 }

@@ -12,6 +12,6 @@ public interface CustomerService {
 	
 	public void save(Customer entity);
 	
-
+	public Customer getByCustomer(Customer customer) ;
 	
 }

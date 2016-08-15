@@ -1,12 +1,11 @@
 package com.hand.main;
 
+import java.util.Date;
 import java.util.Scanner;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.hand.dto.Address;
 import com.hand.dto.Customer;
 import com.hand.service.AddressService;
 import com.hand.service.CustomerService;
@@ -17,17 +16,15 @@ public class Main {
 
 	static ApplicationContext context = new ClassPathXmlApplicationContext("com/hand/ApplicationContext.xml");
 
-	static CustomerServiceImpl customerService = context.getBean(CustomerServiceImpl.class);
-
-	static AddressServiceImpl addressService = context.getBean(AddressServiceImpl.class);
-
+	
 	public static void main(String[] args) {
-	addressService.getById((short)1);
+		AddressService addressService = (AddressServiceImpl) context.getBean("addressService");
+		CustomerService customerService = (CustomerServiceImpl)context.getBean("customerService");
 		Customer c = context.getBean(Customer.class);
 		System.out.println(c.getStoreId());
 		Scanner sc = new Scanner(System.in);  
 		System.out.println("请输入 FirstName(first_name):");
-		String fistName = sc.nextLine();
+		String firstName = sc.nextLine();
 		System.out.println("请输入 LastName(last_name):");
 		String lastName = sc.nextLine();
 		System.out.println("请输入 Email(email):email");
@@ -35,14 +32,26 @@ public class Main {
 		System.out.println("请输入 Address	ID:");
 		Short addressId = sc.nextShort();
 		while(true){
-			addressService.getById((short)1);
-			if(addressService.getById(addressId)>0){
+			if(addressService.getById(addressId)!=null){
 				break;
 			}else{
 				System.out.println("你输入的 Address	ID 不存在,请重新输入:");
 				addressId = sc.nextShort();
 			}
 		}
-		
+		Date date = new Date();
+		c.setAddressId(addressId);
+		c.setCreateDate(date);
+		c.setEmail(email);
+		c.setFirstName(firstName);
+		c.setLastName(lastName);
+		System.out.println("已经保存的数据如下:");
+		customerService.add(c);
+		Customer customer = customerService.getByCustomer(c);
+		System.out.println("ID:"+customer.getCustomerId());
+		System.out.println("FirstName:"+customer.getFirstName());
+		System.out.println("LastName:"+customer.getLastName());
+		System.out.println("Email:"+customer.getEmail());
+		System.out.println("Address:"+addressService.getById(customer.getAddressId()).getAddress());
 	}
 }

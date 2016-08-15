@@ -2,19 +2,22 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context-4.1.xsd
            http://www.springframework.org/schema/tx
-           http://www.springframework.org/schema/tx/spring-tx-4.1.xsd"
-           
-            default-autowire="byType">
+           http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+           http://www.springframework.org/schema/aop
+		   http://www.springframework.org/schema/aop/spring-aop-4.2.xsd ">
 	<!-- 组件自动扫描 -->
 	<context:component-scan base-package="com.hand">
 		<context:exclude-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
+	<aop:aspectj-autoproxy />
+	<aop:config proxy-target-class="true" > </aop:config>
 	<context:property-placeholder location="classpath*:com/hand/jdbc.properties" />
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName">
@@ -53,8 +56,5 @@
 	<bean id="Customer" class="com.hand.dto.Customer" >
 		<property name="storeId" value="1"></property>
 	 </bean>
-	 
-	<bean id = "CustomerServiceImpl" class="com.hand.service.impl.CustomerServiceImpl"></bean>
-	<bean id = "AddressServiceImpl" class="com.hand.service.impl.AddressServiceImpl"></bean>
-</beans>
 	
+</beans>
