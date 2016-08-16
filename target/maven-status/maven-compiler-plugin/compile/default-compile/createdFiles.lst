@@ -8,5 +8,6 @@ com\hand\main\Main.class
 com\hand\dto\Customer.class
 com\hand\mapper\CustomerMapper.class
 com\hand\dto\Address.class
+com\hand\aop\MyEven.class
 com\hand\service\impl\CustomerServiceImpl.class
 com\hand\mapper\AddressMapper.class

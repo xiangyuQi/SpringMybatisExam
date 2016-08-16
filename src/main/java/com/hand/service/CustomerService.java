@@ -14,4 +14,5 @@ public interface CustomerService {
 	
 	public Customer getByCustomer(Customer customer) ;
 	
+	public void deleteById(Short id);
 }

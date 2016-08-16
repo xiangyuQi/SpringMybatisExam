@@ -6,7 +6,7 @@ public interface CustomerMapper {
 
 	public void add(Customer customer);
 	
-	public void deleteById(Short id);
+	public int deleteById(Short id);
 	
 	public Customer getById(Short id);
 

@@ -25,7 +25,7 @@
 		values(#{firstName},#{lastName},#{email},#{addressId},#{createDate},#{storeId})
 	</insert>
 	
-	<delete id="deleteById" parameterType="Short">
+	<delete id="deleteById" parameterType="Short" >
 		delete from customer where customer_id = #{id}
 	</delete>
 

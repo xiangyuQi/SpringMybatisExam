@@ -45,13 +45,21 @@ public class Main {
 		c.setEmail(email);
 		c.setFirstName(firstName);
 		c.setLastName(lastName);
-		System.out.println("已经保存的数据如下:");
 		customerService.add(c);
+		System.out.println("已经保存的数据如下:");
 		Customer customer = customerService.getByCustomer(c);
 		System.out.println("ID:"+customer.getCustomerId());
 		System.out.println("FirstName:"+customer.getFirstName());
 		System.out.println("LastName:"+customer.getLastName());
 		System.out.println("Email:"+customer.getEmail());
 		System.out.println("Address:"+addressService.getById(customer.getAddressId()).getAddress());
+		System.out.println("请输入要删除的 Customer 的 ID:");
+		Short customerId = sc.nextShort();
+		if(customerService.getById(customerId)==null){
+			System.out.println("您输入的ID不存在");
+			return ;
+		}
+		customerService.deleteById(customerId);
+		System.out.println("你输入的 ID 为 "+customerId+"的 Customer 已经 删除.");
 	}
 }

@@ -33,5 +33,9 @@ public class CustomerServiceImpl implements CustomerService{
 		return customerMapper.getByCustomer(customer);
 	}
 
+	public void  deleteById(Short id) {
+		customerMapper.deleteById(id);
+	}
+
 
 }
